@@ -6,8 +6,8 @@ import com.redmedellin.magicclient.utils.Eth;
 public class AccountManager {
 
     private boolean onboarded;
-    private Object address; //TODO change type
-    private Object privkey; //TODO change type
+    private String address;
+    private String privkey;
     private Wireless wireless;
 
     public  AccountManager(){
@@ -26,7 +26,7 @@ public class AccountManager {
      @param address the Ethereum address of an existing account
      @param isNewAccount whether a new account needs to be created
      */
-    public void setAccountInfo(Object address, Object privkey, boolean isNewAccount){
+    public void setAccountInfo(String address, String privkey, boolean isNewAccount){
 
         if(isNewAccount){
             Object account = Eth.generateAccount(); //TODO change type
@@ -81,7 +81,7 @@ public class AccountManager {
         return address;
     }
 
-    public void setAddress(Object address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -89,7 +89,7 @@ public class AccountManager {
         return privkey;
     }
 
-    public void setPrivkey(Object privkey) {
+    public void setPrivkey(String privkey) {
         this.privkey = privkey;
     }
 
