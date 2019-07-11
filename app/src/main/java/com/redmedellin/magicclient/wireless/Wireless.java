@@ -1,20 +1,43 @@
 package com.redmedellin.magicclient.wireless;
 
+import android.app.Activity;
+import android.content.Context;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiEnterpriseConfig;
+import android.net.wifi.WifiManager;
 
-public class Wireless implements WirelessDriver{
+
+import java.util.List;
+
+public class Wireless extends Activity implements WirelessDriver  {
 
     WifiConfiguration config;
     WifiEnterpriseConfig enterpriseConfig;
+    WifiManager wifiManager;
+
 
     public Wireless(){
         config = new WifiConfiguration();
         enterpriseConfig = new WifiEnterpriseConfig();
+        //Instantiate a wifimanager object. This requires to make the current class an activity so we can access context
+        this.wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
     }
 
     @Override
     public boolean has8021xCreds(String ssid, String username, String password) {
+
+        //Only connects to a network whose profile has already been installed
+        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+        for (WifiConfiguration config : list) {
+            if (config.SSID != null &&
+                    config.SSID.equals("\"" + ssid + "\"") && //if SSID matches
+                    config.enterpriseConfig != null &&
+                    config.enterpriseConfig.getIdentity().equals(username)){ //and the enterprise identity matches
+
+                return true;
+            }
+        }
+        //if no match is found within the set of installed profiles
         return false;
     }
 
@@ -46,7 +69,17 @@ public class Wireless implements WirelessDriver{
     @Override
     public void connect(String ssid) {
 
-        config.SSID = ssid;
+        //Only connects to a network whose profile has already been installed
+        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+        for (WifiConfiguration config : list) {
+            if (config.SSID != null && config.SSID.equals("\"" + ssid + "\"")) {
+                wifiManager.disconnect();
+                wifiManager.enableNetwork(config.networkId, true);
+                wifiManager.reconnect();
+                System.out.println("Success!");
+                break;
+            }
+        }
     }
 
     @Override
