@@ -47,7 +47,8 @@ public class AccountManager {
     public void setup8021xCreds(String ssid){
 
         String timestamp;
-        boolean hasCreds = this.wireless.has8021xCreds();
+        //TODO change username & password
+        boolean hasCreds = this.wireless.has8021xCreds(ssid, "username", "password");
 
         //If there are no 802.1x credentials, create one. Otherwise, all set
         if (!hasCreds){
