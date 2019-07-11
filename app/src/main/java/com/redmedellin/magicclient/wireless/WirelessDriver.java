@@ -1,5 +1,9 @@
 package com.redmedellin.magicclient.wireless;
 
+import android.net.wifi.ScanResult;
+
+import java.util.List;
+
 public interface WirelessDriver {
 
     //Check if 802.1x credentials are already installed
@@ -15,7 +19,7 @@ public interface WirelessDriver {
     public String getCurrentSsid();
 
     //Scan for available wifi networks
-    public void scanNetworks();
+    public List<ScanResult> scanNetworks();
 
     //Get the details of the current network interface or adapter
     public String getAdapter();

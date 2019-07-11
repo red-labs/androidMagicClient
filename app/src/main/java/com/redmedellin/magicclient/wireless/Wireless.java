@@ -2,6 +2,7 @@ package com.redmedellin.magicclient.wireless;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiEnterpriseConfig;
 import android.net.wifi.WifiManager;
@@ -84,16 +85,34 @@ public class Wireless extends Activity implements WirelessDriver  {
 
     @Override
     public String getCurrentSsid() {
-        return null;
+        return wifiManager.getConnectionInfo().getSSID();
     }
 
     @Override
-    public void scanNetworks() {
-
+    public List<ScanResult> scanNetworks() {
+        return wifiManager.getScanResults();
     }
 
     @Override
     public String getAdapter() {
-        return null;
+        //TODO
+        return "";
+    }
+
+    public boolean getWifiStatus(){
+        return wifiManager.isWifiEnabled();
+    }
+
+    public String getMACAddress(){
+        return wifiManager.getConnectionInfo().getMacAddress();
+    }
+
+    public String getBSSID(){
+        return wifiManager.getConnectionInfo().getBSSID();
+    }
+
+    public String getChannel(){
+        //TODO
+        return "";
     }
 }
