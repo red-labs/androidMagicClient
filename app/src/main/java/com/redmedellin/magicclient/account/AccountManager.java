@@ -3,6 +3,14 @@ package com.redmedellin.magicclient.account;
 import com.redmedellin.magicclient.wireless.Wireless;
 import com.redmedellin.magicclient.utils.Eth;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.web3j.crypto.CipherException;
+
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
 public class AccountManager {
 
     private boolean onboarded;
@@ -26,12 +34,12 @@ public class AccountManager {
      @param address the Ethereum address of an existing account
      @param isNewAccount whether a new account needs to be created
      */
-    public void setAccountInfo(String address, String privkey, boolean isNewAccount){
+    public void setAccountInfo(String address, String privkey, boolean isNewAccount) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, CipherException, JSONException {
 
         if(isNewAccount){
-            Object account = Eth.generateAccount(); //TODO change type
-            this.address = account.address; //TODO verify the web3j appropriate field name and access
-            this.privkey = account.privkey; //TODO verify the web3j appropriate field name and access
+            JSONObject account = Eth.generateAccount();
+            this.address = account.getString("address");
+            this.privkey = account.getString("privatekey");
         }
         else {
             this.address = address;
@@ -59,7 +67,7 @@ public class AccountManager {
             this.wireless.install8021xCreds(
                     ssid,
                     this.address,
-                    Eth.sign("auth_"  + timestamp, this.privkey),
+                    Eth.sign("auth_"  + timestamp, this.privkey), //TODO figure out which part of the signature is needed (v, r, or s)
                     timestamp
             );
 
