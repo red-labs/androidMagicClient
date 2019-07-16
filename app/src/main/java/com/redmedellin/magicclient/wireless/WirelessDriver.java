@@ -1,5 +1,6 @@
 package com.redmedellin.magicclient.wireless;
 
+import android.content.Context;
 import android.net.wifi.ScanResult;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface WirelessDriver {
     public void install8021xCreds(String ssid, String username, String password, String timestamp);
 
     //Connect to the network specified by ssid.
-    public void connect(String ssid);
+    public boolean connect(Context context, String ssid);
 
     //Get current network's SSID
     public String getCurrentSsid();

@@ -78,4 +78,9 @@ public class Eth {
         }
         return false;
     }
+
+    String publicToAddress (BigInteger publicKey){
+        //TODO - method unreferenced in the rest of the codebase
+        return "";
+    }
 }
