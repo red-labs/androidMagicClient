@@ -98,8 +98,9 @@ public class Wireless implements WirelessDriver  {
             conf.enterpriseConfig.setPhase2Method(WifiEnterpriseConfig.Phase2.PAP);
             conf.enterpriseConfig.setIdentity("Ethereum Address");
             long timestamp = System.currentTimeMillis() / 1000L;
-            String encodedMessage = "auth_" + timestamp;  // this needs to be signed by ethereuem
-            conf.enterpriseConfig.setPassword(timestamp + "-"+encodedMessage);
+            String encodedMessage = "auth_" + timestamp; // this needs to be signed by ethereuem
+
+            conf.enterpriseConfig.setPassword(timestamp + "-" + encodedMessage);
 
             wifiManager.addNetwork(conf);
 
@@ -127,6 +128,20 @@ public class Wireless implements WirelessDriver  {
     @Override
     public List<ScanResult> scanNetworks() {
         return wifiManager.getScanResults();
+    }
+
+    public void removeNetwork(String ssid, String username){
+        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+        for (WifiConfiguration config : list) {
+            if (config.SSID != null &&
+                    config.SSID.equals("\"" + ssid + "\"")
+                    && //if SSID matches
+                    config.enterpriseConfig != null &&
+                    config.enterpriseConfig.getIdentity().equals(username)){ //and the enterprise identity matches
+
+                wifiManager.removeNetwork(config.networkId);
+            }
+        }
     }
 
     @Override

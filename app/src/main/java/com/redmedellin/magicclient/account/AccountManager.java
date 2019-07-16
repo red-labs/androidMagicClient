@@ -18,11 +18,12 @@ public class AccountManager {
     private String privkey;
     private Wireless wireless;
 
-    public  AccountManager(){
+    //Pass wireless object from main activity to ensure there's only one instance running
+    public  AccountManager(Wireless wireless){
         onboarded = false;
         address = null;
         privkey = null;
-        wireless = new Wireless();
+        this.wireless = wireless;
     }
 
     /*
