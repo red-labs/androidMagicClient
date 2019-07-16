@@ -53,11 +53,11 @@ public class AccountManager {
     /*
      Install the 802.1x credentials if not already present.
      */
-    public void setup8021xCreds(String ssid){
+    public void setup8021xCreds(String ssid, String username, String password){
 
         String timestamp;
         //TODO change username & password
-        boolean hasCreds = this.wireless.has8021xCreds(ssid, "username", "password");
+        boolean hasCreds = this.wireless.has8021xCreds(ssid, username, password);
 
         //If there are no 802.1x credentials, create one. Otherwise, all set
         if (!hasCreds){
