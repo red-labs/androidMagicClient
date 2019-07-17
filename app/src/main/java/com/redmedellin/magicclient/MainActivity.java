@@ -1,7 +1,9 @@
 package com.redmedellin.magicclient;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.redmedellin.magicclient.account.AccountManager;
 import com.redmedellin.magicclient.wireless.Wireless;
@@ -21,8 +23,17 @@ public class MainActivity extends AppCompatActivity {
         accountManager = new AccountManager(wireless);
 
         setContentView(R.layout.activity_main);
-        //TODO UI stuff
     }
+
+    public void existingAccountOnboard(View view) {
+        Intent i = new Intent(getApplicationContext(),OnboardNewUserActivity.class);
+        startActivity(i);
+    }
+
+    public void newAccountOnboard(View view) {
+        // Do something in response to button click
+    }
+
 
     //TODO ask Dom about critical info and what it is
     /*
