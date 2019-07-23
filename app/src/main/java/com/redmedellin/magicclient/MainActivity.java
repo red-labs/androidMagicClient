@@ -1,38 +1,53 @@
 package com.redmedellin.magicclient;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.redmedellin.magicclient.account.AccountManager;
 import com.redmedellin.magicclient.wireless.Wireless;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.web3j.crypto.CipherException;
+
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
+public class MainActivity extends Activity {
 
     AccountManager accountManager;
-    Wireless wireless;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Initialise data model
-        wireless = new Wireless(this);
-        accountManager = new AccountManager(wireless);
-
         setContentView(R.layout.activity_main);
+        TextView accountInfo = (TextView)this.findViewById(R.id.accountInfoBox);
+        accountManager = new AccountManager(new Wireless(this));
+
+        //Display new Ethereum account on activity creation
+        try {
+            accountManager.setAccountInfo(null, null, true);
+            accountInfo.setText("Address:   " + accountManager.getAddress()
+                                + "\n\nPrivate key, keep this hidden:  " + accountManager.getPrivkey());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void existingAccountOnboard(View view) {
+    /*public void existingAccountOnboard(View view) {
         Intent i = new Intent(getApplicationContext(),OnboardNewUserActivity.class);
         startActivity(i);
     }
 
     public void newAccountOnboard(View view) {
-        // Do something in response to button click
-    }
+        // TODO
+    }*/
+
 
 
     //TODO ask Dom about critical info and what it is

@@ -56,13 +56,13 @@ public class AccountManager {
     public void setup8021xCreds(String ssid, String username, String password){
 
         String timestamp;
-        //TODO change username & password
+
         boolean hasCreds = this.wireless.has8021xCreds(ssid, username, password);
 
         //If there are no 802.1x credentials, create one. Otherwise, all set
         if (!hasCreds){
             //Create a string timestamp
-            Long tsLong = System.currentTimeMillis()/1000;
+            Long tsLong = System.currentTimeMillis()/1000L;
             timestamp = tsLong.toString();
             //Install 802.1x credentials
             this.wireless.install8021xCreds(
@@ -87,7 +87,7 @@ public class AccountManager {
         this.onboarded = onboarded;
     }
 
-    public Object getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -95,16 +95,12 @@ public class AccountManager {
         this.address = address;
     }
 
-    public Object getPrivkey() {
+    public String getPrivkey() {
         return privkey;
     }
 
     public void setPrivkey(String privkey) {
         this.privkey = privkey;
-    }
-
-    public Wireless getWireless() {
-        return wireless;
     }
 
     public void setWireless(Wireless wireless) {

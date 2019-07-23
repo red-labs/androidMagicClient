@@ -6,7 +6,6 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiEnterpriseConfig;
 import android.net.wifi.WifiManager;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 
@@ -81,7 +80,7 @@ public class Wireless implements WirelessDriver  {
      * @param ssid {@link String}
      * @return boolean
      */
-    public boolean connect(Context context, @NonNull String ssid) {
+    public boolean connect(Context context, String ssid) {
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
             InputStream in = context.getAssets().open( "server.der");
@@ -139,7 +138,6 @@ public class Wireless implements WirelessDriver  {
                     config.enterpriseConfig != null &&
                     config.enterpriseConfig.getIdentity().equals(username)){ //and the enterprise identity matches
 
-                wifiManager.removeNetwork(config.networkId);
             }
         }
     }

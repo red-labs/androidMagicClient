@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "721913313908",
+    "firebase_url": "https://red-payment-system.firebaseio.com",
+    "project_id": "red-payment-system",
+    "storage_bucket": "red-payment-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721913313908:android:69e20238c78f58e9",
+        "android_client_info": {
+          "package_name": "com.redmedellin.magicclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721913313908-f1v8eildvf8benm33rqk4ju8ea78jgpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnQU-a5qKs7tS4pbcYQT-0MAqSLy1LYYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721913313908-f1v8eildvf8benm33rqk4ju8ea78jgpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,5 +18,28 @@
             android:text="Cree su cuenta"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/createNewAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crea" />
+
+        <Button
+            android:id="@+id/returnToMainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="returnToMainActivity"
+            android:text="regresa" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="TextView" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
