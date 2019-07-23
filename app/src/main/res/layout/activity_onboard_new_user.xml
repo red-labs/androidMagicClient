@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="78dp"
             android:text="Cree su cuenta"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAlignment="center" />
 
         <Space
             android:layout_width="match_parent"

@@ -35,7 +35,8 @@ public class AccountManager {
      @param address the Ethereum address of an existing account
      @param isNewAccount whether a new account needs to be created
      */
-    public void setAccountInfo(String address, String privkey, boolean isNewAccount) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, CipherException, JSONException {
+    public void setAccountInfo(String address, String privkey, boolean isNewAccount)
+            throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, CipherException, JSONException {
 
         if(isNewAccount){
             JSONObject account = Eth.generateAccount();
@@ -53,7 +54,7 @@ public class AccountManager {
     /*
      Install the 802.1x credentials if not already present.
      */
-    public void setup8021xCreds(String ssid, String username, String password){
+    /*public void setup8021xCreds(String ssid, String username, String password){
 
         String timestamp;
 
@@ -74,7 +75,7 @@ public class AccountManager {
 
         }
 
-    }
+    }*/
 
 
     //GENERIC GETTERS AND SETTERS
