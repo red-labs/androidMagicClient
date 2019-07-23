@@ -1,20 +1,13 @@
 package com.redmedellin.magicclient;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import com.redmedellin.magicclient.account.AccountManager;
 import com.redmedellin.magicclient.wireless.Wireless;
-
-import org.json.JSONException;
-import org.web3j.crypto.CipherException;
-
-import java.security.InvalidAlgorithmParameterException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 
 public class MainActivity extends Activity {
 
@@ -25,7 +18,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView accountInfo = (TextView)this.findViewById(R.id.accountInfoBox);
+        EditText accountInfo = (EditText) this.findViewById(R.id.privKeyInfoBox);
         accountManager = new AccountManager(new Wireless(this));
 
         //Display new Ethereum account on activity creation
@@ -39,44 +32,21 @@ public class MainActivity extends Activity {
 
     }
 
-    /*public void existingAccountOnboard(View view) {
-        Intent i = new Intent(getApplicationContext(),OnboardNewUserActivity.class);
-        startActivity(i);
-    }
+    private TextWatcher filterTextWatcher = new TextWatcher() {
 
-    public void newAccountOnboard(View view) {
-        // TODO
-    }*/
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+        }
 
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-    //TODO ask Dom about critical info and what it is
-    /*
-    * Main bits of functionality to implement
-    *
-    * -> Set user info
-    * -> Install WPA2-E profile
-    * -> Connect user
-    *
-     */
+        }
 
-    /**
-     * SET USER INFO PSEUDOCODE:
-     * if(isUserNew){
-     *     JSONObject newAcct = Eth.generateAccount();
-     *     this.address = newAcct.address;
-     *     this.privkey = newAcct.privKey;
-     *
-     * } else {
-     *
-     *     this.privkey = getPrivKeyFromUser();
-     *     this.address = getAddressFromUser();
-     * }
-     */
+        @Override
+        public void afterTextChanged(Editable s) {
 
-    /**
-     * INSTALL WPA2-E PROFILE PSEUDOCODE
-     * accountManager.setup8021xCreds("magic", this.address, this.privkey);
-     */
-
+        }
+    };
 }

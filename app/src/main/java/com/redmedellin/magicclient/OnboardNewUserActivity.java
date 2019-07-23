@@ -1,7 +1,7 @@
 package com.redmedellin.magicclient;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,7 +17,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
-public class OnboardNewUserActivity extends AppCompatActivity {
+public class OnboardNewUserActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
