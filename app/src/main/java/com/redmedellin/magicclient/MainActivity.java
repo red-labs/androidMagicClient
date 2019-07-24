@@ -1,3 +1,14 @@
+/* magic-cli - Command Line Interface (CLI) for connecting to the Magic Network
+
+         Author: Magic Foundation <support@hologram.io>
+
+         Copyright 2018 - Magic Foundation
+
+
+         LICENSE: Distributed under the terms of the MIT License
+
+*/
+
 package com.redmedellin.magicclient;
 
 import android.app.Activity;
@@ -25,11 +36,13 @@ public class MainActivity extends Activity {
         //Initialise wireless
         accountManager = new AccountManager(new Wireless(this));
 
+        addressInfo.setText("AASBVBD"); //accountManager.getAddress()
+        privKeyInfo.setText("SUGERGN"); //accountManager.getPrivkey()
+
         //Display new Ethereum account as a default in the text boxes
         try {
             accountManager.setAccountInfo(null, null, true);
-            addressInfo.setText(accountManager.getAddress());
-            privKeyInfo.setText(accountManager.getPrivkey());
+
             //Register text change listeners for address & private key text boxes
             addressInfo.addTextChangedListener(addressTextWatcher);
             privKeyInfo.addTextChangedListener(privKeyTextWatcher);
